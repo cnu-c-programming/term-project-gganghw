@@ -32,6 +32,7 @@
  * --------------------------------------------------------------- */
 void run_shell(const char *csv_path) {
     /* TODO */
+    
     (void)csv_path;
 }
 
@@ -66,6 +67,21 @@ int main(int argc, char *argv[]) {
      *       }
      *   }
      */
+     for(int i = 1; i<argc;i++){
+        if(strcmp(argv[i], "-f")== 0 && i + 1 < argc){
+            cmd_file = argv[++i];
+        }else{
+            csv_path = argv[i];
+        }
+     }
+     if(csv_path == NULL){
+        #ifdef ADMIN_MODE
+            printf("Usage: ./admin_shell <csv_file>[-f command_file]\n");
+        #else
+            printf("Usage: ./client_shell <csv_file> [-f command_file]\n");
+        #endif
+            return 1;
+     }
     (void)argc;
     (void)argv;
 
