@@ -32,7 +32,27 @@
  * --------------------------------------------------------------- */
 void run_shell(const char *csv_path) {
     /* TODO */
-    
+    char line[200];
+    while(1){
+#ifdef ADMIN_MODE
+        printf("admin> ");
+#else
+        printf("client> ");
+#endif
+        if (fgets(line, sizeof(line), stdin) == NULL) {
+            printf("Bye!\n");
+            break;
+        }
+        char *cmd = strtok(line, " \n");
+
+        if (cmd == 0) {
+            continue;
+        }
+        if(strcmp(cmd, "exit")==0){
+            printf("Bye!\n");
+            break;
+        }
+    }
     (void)csv_path;
 }
 
