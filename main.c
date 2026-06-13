@@ -32,7 +32,7 @@
  * --------------------------------------------------------------- */
 void run_shell(const char *csv_path) {
     /* TODO */
-    char line[200];
+    char line[256];
     while(1){
 #ifdef ADMIN_MODE
         printf("admin> ");
@@ -64,6 +64,24 @@ void run_shell(const char *csv_path) {
  * --------------------------------------------------------------- */
 void run_command_file(const char *cmd_file, const char *csv_path) {
     /* TODO */
+    FILE *fp = fopen(cmd_file, "r");
+    if(fp == NULL){
+        perror("파일을 열 수 없습니다");
+        return;
+    }
+    char buffer[256];
+    while(fgets(buffer, sizeof(buffer), fp) != NULL){
+        char *cmd = strtok(buffer, " \n");
+        if (cmd == 0) {
+            continue;
+        }
+        if(strcmp(cmd, "exit")==0){
+            printf("Bye!\n");
+            break;
+        }
+    }
+
+    fclose(fp); 
     (void)cmd_file;
     (void)csv_path;
 }
