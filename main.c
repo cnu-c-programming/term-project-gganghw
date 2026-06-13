@@ -39,13 +39,13 @@ void run_shell(const char *csv_path) {
 #else
         printf("client> ");
 #endif
-        if (fgets(line, sizeof(line), stdin) == NULL) {
+        if(fgets(line, sizeof(line), stdin) == NULL) {
             printf("Bye!\n");
             break;
         }
         char *cmd = strtok(line, " \n");
 
-        if (cmd == 0) {
+        if(cmd == 0) {
             continue;
         }
         if(strcmp(cmd, "exit")==0){
@@ -123,9 +123,11 @@ int main(int argc, char *argv[]) {
     (void)argc;
     (void)argv;
 
+    Student *student_list = load(csv_path);
+
 #ifdef ADMIN_MODE
     /* Admin shell: supports add, delete, update, save, load, sort, list, find, help, exit */
-    if (cmd_file) {
+    if(cmd_file) {
         run_command_file(cmd_file, csv_path);
     } else {
         run_shell(csv_path);
@@ -133,7 +135,7 @@ int main(int argc, char *argv[]) {
 
 #elif defined(CLIENT_MODE)
     /* Client shell: supports find, list, help, exit  (read-only) */
-    if (cmd_file) {
+    i(cmd_file) {
         run_command_file(cmd_file, csv_path);
     } else {
         run_shell(csv_path);
