@@ -19,8 +19,8 @@
 #include <string.h>
 
 /* TODO: Add your own header includes here */
-/* #include "student.h"  */
-/* #include "file_io.h"  */
+#include "student.h"
+#include "file_io.h"
 /* #include "command.h"  */
 
 /* ---------------------------------------------------------------
@@ -124,6 +124,12 @@ int main(int argc, char *argv[]) {
     (void)argv;
 
     Student *student_list = load(csv_path);
+
+    if (student_list != NULL) {
+        printf("테스트 성공 ,첫 번째 학생: %s (점수: %d)\n", student_list->name, student_list->score);
+    } else {
+        printf("엑셀 파일이 비어있네요\n");
+    }
 
 #ifdef ADMIN_MODE
     /* Admin shell: supports add, delete, update, save, load, sort, list, find, help, exit */
