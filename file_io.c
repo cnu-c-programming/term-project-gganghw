@@ -38,3 +38,17 @@ Student* load(const char *filename) {
     fclose(fp);
     return head; 
 }
+void save(Student *head, const char *filename){
+    FILE *fp = fopen(filename, "w");
+    if(fp == NULL){
+        return;
+    }
+    fprintf(fp, "id,name,score\n");
+    Student *current = head;
+
+    while(current != NULL){
+        fprintf(fp,"%d,%s,%d\n", current->id, current->name, current->score);
+        current = current->next;
+    }
+    fclose(fp);
+}
