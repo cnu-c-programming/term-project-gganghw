@@ -16,5 +16,8 @@ typedef enum {
 }ShellResult;
 
 ShellResult add_stu(Student **head_p,int id, const char *name, int score);
-
+ShellResult list_stu(Student *head);
+ShellResult find_stu(Student *head, int id);
+ShellResult delete_stu(Student **head_p, int id);
+ShellResult update_stu(Student *head, int id, const char *name, int score);
 #endif
