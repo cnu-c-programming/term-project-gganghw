@@ -19,5 +19,11 @@ ShellResult add_stu(Student **head_p,int id, const char *name, int score);
 ShellResult list_stu(Student *head);
 ShellResult find_stu(Student *head, int id);
 ShellResult delete_stu(Student **head_p, int id);
-ShellResult update_stu(Student *head, int id, const char *name, int score);
+ShellResult update_stu(Student *head, int id, int score);
+ShellResult save_list(Student *head);
+ShellResult stats(Student *head);
+ShellResult clear(void);
+ShellResult reload(Student **head_p);
+ShellResult help(void);
+ShellResult exit(Student *head);
 #endif
