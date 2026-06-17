@@ -25,5 +25,5 @@ ShellResult stats(Student *head);
 ShellResult clear(void);
 ShellResult reload(Student **head_p);
 ShellResult help(void);
-ShellResult exit(Student *head);
+ShellResult exit_p(Student *head);
 #endif

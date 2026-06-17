@@ -165,7 +165,7 @@ ShellResult help(void){
     printf("exit                    Exit program\n");
     return SHELL_OK;
 }
-ShellResult exit(Student *head){
+ShellResult exit_p(Student *head){
     Student *current = head;
     Student *next;
     while(current!=NULL){
