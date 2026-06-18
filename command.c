@@ -5,6 +5,8 @@
 #include "student.h"
 #include "file_io.h"
 
+extern const char *current_csv_path;
+
 ShellResult add_stu(Student **head_p,int id, const char *name, int score) {
     if(score<0||score>100){
         return SHELL_ERR_INVALID_SCORE;
@@ -128,15 +130,15 @@ ShellResult clear(void){
     printf("\033[2J\033[H");
     return SHELL_OK;
 }
-ShellResult save_list(Student *head){
+ShellResult save_list(Student *head, const char *filename){
     int count = 0;
     Student *current = head;
     while(current!=NULL){
         count++;
         current = current->next;
     }
-    save(head,"students.csv");
-    printf("Saved %d students to students.csv.\n", count);
+    save(head,filename);
+    printf("Saved %d students to %s.\n", count, filename);
     return SHELL_OK;
 }
 ShellResult reload(Student **head_p){
@@ -147,7 +149,7 @@ ShellResult reload(Student **head_p){
         free(current);
         current = next;
     }
-    *head_p = load("students.csv");
+    *head_p = load(current_csv_path);
     
     int count = 0;
     current = *head_p;
@@ -155,7 +157,7 @@ ShellResult reload(Student **head_p){
         count++;
         current = current->next;
     }
-    printf("Reloaded %d students from students.csv.\n", count);
+    printf("Reloaded %d students from %s.\n", count, current_csv_path);
     return SHELL_OK;
 }
 ShellResult help(void){

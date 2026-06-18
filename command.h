@@ -20,7 +20,7 @@ ShellResult list_stu(Student *head);
 ShellResult find_stu(Student *head, int id);
 ShellResult delete_stu(Student **head_p, int id);
 ShellResult update_stu(Student *head, int id, int score);
-ShellResult save_list(Student *head);
+ShellResult save_list(Student *head, const char *filename);
 ShellResult stats(Student *head);
 ShellResult clear(void);
 ShellResult reload(Student **head_p);

@@ -23,8 +23,9 @@
 #include "file_io.h"
 #include "command.h"
 
+const char *current_csv_path = NULL;
 /* ---------------------------------------------------------------
- * TODO: Implement the interactive shell loop.
+* TODO: Implement the interactive shell loop.
  *   - Print a prompt and read a line from stdin.
  *   - Parse the line into a command and arguments.
  *   - Dispatch to the appropriate handler function.
@@ -75,7 +76,7 @@ void run_shell(Student **head) {
         }
 #ifdef ADMIN_MODE
         else if(strcmp(cmd, "save") == 0) {
-                save_list(*head);
+                save_list(*head, current_csv_path);
         }else if(strcmp(cmd, "delete") == 0){
             char *id_str = strtok(NULL, " \n");
             if(id_str == NULL){
@@ -145,14 +146,21 @@ void run_command_file(const char *cmd_file, Student **head) {
     int line_num = 0;
 
     while(fgets(buffer, sizeof(buffer), fp) != NULL){
-        line_num++;
-        int len = strlen(buffer);
+        int len = strlen(buffer);//수정
         if(len > 0 && buffer[len - 1] == '\n'){
             buffer[len - 1] = '\0';
         }
         if(strlen(buffer) == 0 || buffer[0] == '#'){
             continue;
         }
+       int i = 0;
+        while(buffer[i] == ' ' || buffer[i] == '\t') {
+            i++;
+        }
+        if(buffer[i] == '\0' || buffer[i] == '#'){
+            continue;
+        }
+        line_num++;
         printf("[command file:%d] %s\n", line_num, buffer);
 
        char *cmd = strtok(buffer, " \n");
@@ -184,7 +192,7 @@ void run_command_file(const char *cmd_file, Student **head) {
         }
 #ifdef ADMIN_MODE
         else if(strcmp(cmd, "save") == 0){
-                save_list(*head);
+                save_list(*head, current_csv_path);
         }else if(strcmp(cmd, "delete") == 0){
             char *id_str = strtok(NULL, " \n");
             if(id_str == NULL){
@@ -276,6 +284,7 @@ int main(int argc, char *argv[]) {
     (void)argv;
 
     Student *head = load(csv_path);
+    current_csv_path = csv_path;
 
     int count = 0;
     Student *curr = head;
