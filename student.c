@@ -8,7 +8,7 @@ Student* create(int id, const char* name, int score) {
     if (new_stu == NULL) {
         return NULL;
 }
-
+    
 new_stu->id = id;
 new_stu->score = score;
 strcpy(new_stu->name, name);
