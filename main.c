@@ -57,7 +57,7 @@ void run_shell(Student **head) {
         }else if(strcmp(cmd, "clear")==0){
             clear();
         }else if(strcmp(cmd, "list")==0){
-            list(*head);
+            list_stu(*head);
         }else if(strcmp(cmd, "stats")==0){
             stats(*head);
         }else if(strcmp(cmd, "reload")==0){
@@ -166,7 +166,7 @@ void run_command_file(const char *cmd_file, Student **head) {
         }else if(strcmp(cmd, "clear") == 0){
             clear();
         }else if(strcmp(cmd, "list") == 0){
-            list(*head);
+            list_stu(*head);
         }else if(strcmp(cmd, "stats") == 0){
             stats(*head);
         }else if(strcmp(cmd, "reload") == 0){

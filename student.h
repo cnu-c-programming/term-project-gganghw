@@ -7,4 +7,6 @@ typedef struct Student {
     struct Student* next;
 } Student;
 
+Student* create(int id, const char *name, int score);
+
 #endif

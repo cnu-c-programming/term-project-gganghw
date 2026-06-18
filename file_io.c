@@ -3,6 +3,7 @@
 #include <string.h>
 #include "student.h"
 #include "file_io.h"
+#include "student.h"
 
 Student* load(const char *filename) {
     FILE *fp = fopen(filename, "r");
@@ -10,6 +11,8 @@ Student* load(const char *filename) {
         return NULL; 
     }
     char buffer[256];
+
+    fgets(buffer, sizeof(buffer), fp);//id, name, score 0번에 생기는 오류 처리
 
     Student *head = NULL;
     Student *tail = NULL;

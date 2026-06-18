@@ -3,6 +3,7 @@
 #include <string.h>
 #include "command.h"
 #include "student.h"
+#include "file_io.h"
 
 ShellResult add_stu(Student **head_p,int id, const char *name, int score) {
     if(score<0||score>100){
@@ -16,7 +17,7 @@ ShellResult add_stu(Student **head_p,int id, const char *name, int score) {
         current = current->next;
     }
 
-    Student *new_stu =create_student(id,name,score);
+    Student *new_stu =create(id,name,score);
     if(new_stu == NULL){
         return SHELL_ERR_INVALID_ARGUMENT;
     }
@@ -32,7 +33,7 @@ ShellResult add_stu(Student **head_p,int id, const char *name, int score) {
     return SHELL_OK;
 }
 
-ShellResult stu_list(Student *head){
+ShellResult list_stu(Student *head){
     Student *current = head;
     if(current == NULL){
         printf("No students found.\n");
@@ -146,8 +147,14 @@ ShellResult reload(Student **head_p){
         free(current);
         current = next;
     }
-    *head_p = NULL;
-    int count = load("students.csv", head_p);
+    *head_p = load("students.csv");
+    
+    int count = 0;
+    current = *head_p;
+    while(current != NULL) {
+        count++;
+        current = current->next;
+    }
     printf("Reloaded %d students from students.csv.\n", count);
     return SHELL_OK;
 }
