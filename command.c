@@ -162,14 +162,16 @@ ShellResult reload(Student **head_p){
 }
 ShellResult help(void){
     printf("Commands:\n");
+#ifdef ADMIN_MODE
     printf("save                    Save students to CSV\n");
-    printf("reload                  Reload students from CSV\n");
     printf("add <id> <name> <score> Add a student\n");
     printf("delete <id>             Delete a student\n");
     printf("update <id> <score>     Update student score\n");
-    printf("find <id>               Find student by ID\n");
+    #endif
+    printf("reload                  Reload students from CSV\n");
     printf("list                    List all students\n");
     printf("stats                   Show statistics\n");
+    printf("find <id>               Find student by ID\n");
     printf("clear                   Clear screen\n");
     printf("exit                    Exit program\n");
     return SHELL_OK;
