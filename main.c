@@ -254,16 +254,6 @@ int main(int argc, char *argv[]) {
      *   Supported flags:
      *     -f <file>   run commands from <file> instead of stdin
      *   Remaining positional argument (if any): path to students CSV.
-     *
-     *   Example parsing skeleton:
-     *
-     *   for (int i = 1; i < argc; i++) {
-     *       if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
-     *           cmd_file = argv[++i];
-     *       } else {
-     *           csv_path = argv[i];
-     *       }
-     *   }
      */
      for(int i = 1; i<argc;i++){
         if(strcmp(argv[i], "-f")== 0 && i + 1 < argc){

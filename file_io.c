@@ -12,7 +12,7 @@ Student* load(const char *filename) {
     }
     char buffer[256];
 
-    fgets(buffer, sizeof(buffer), fp);//id, name, score 0번에 생기는 오류 처리
+    fgets(buffer, sizeof(buffer), fp);
 
     Student *head = NULL;
     Student *tail = NULL;
